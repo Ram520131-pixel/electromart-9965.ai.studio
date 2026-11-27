@@ -1,0 +1,6 @@
+{
+  "name": "ElectroMart",
+  "description": "Precision electronics, microcontrollers, FPGA boards, sensors, and lab testing instruments for engineers and makers across India.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

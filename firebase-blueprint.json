@@ -1,0 +1,553 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Electronics component, development board, sensor, lab equipment, or engineering bundle sold on ElectroMart.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "sku": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 40,
+          "pattern": "^[A-Z0-9\\-]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 160
+        },
+        "shortName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80
+        },
+        "brand": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "arduino",
+            "esp32",
+            "raspberry-pi",
+            "fpga-vlsi",
+            "sensors",
+            "robotics",
+            "components",
+            "power-modules",
+            "testing-tools",
+            "lab-bundles"
+          ]
+        },
+        "categoryLabel": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 60
+        },
+        "priceInr": {
+          "type": "number"
+        },
+        "mrpInr": {
+          "type": "number"
+        },
+        "rating": {
+          "type": "number"
+        },
+        "reviewCount": {
+          "type": "number"
+        },
+        "stockStatus": {
+          "type": "string",
+          "enum": ["In Stock", "Low Stock", "Out of Stock"]
+        },
+        "stockQty": {
+          "type": "number"
+        },
+        "image": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 500
+        },
+        "gallery": {
+          "type": "array",
+          "description": "Up to 5 product image paths"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 2000
+        },
+        "highlights": {
+          "type": "array",
+          "description": "Up to 8 feature highlights"
+        },
+        "specs": {
+          "type": "array",
+          "description": "Up to 15 technical spec label/value maps"
+        },
+        "isTrending": {
+          "type": "boolean"
+        },
+        "isBestSeller": {
+          "type": "boolean"
+        },
+        "isBundle": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "sku",
+        "name",
+        "shortName",
+        "brand",
+        "category",
+        "categoryLabel",
+        "priceInr",
+        "rating",
+        "reviewCount",
+        "stockStatus",
+        "stockQty",
+        "image",
+        "description",
+        "isTrending",
+        "isBestSeller",
+        "isBundle",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Private customer profile containing contact and shipping details.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 160
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 20
+        },
+        "organization": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "address": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "city": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "state": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "pinCode": {
+          "type": "string",
+          "maxLength": 12
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "uid",
+        "displayName",
+        "email",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "CartEntry": {
+      "title": "CartEntry",
+      "description": "Single persisted line item inside a user's shopping cart subcollection.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "productId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "sku": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 40
+        },
+        "shortName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "priceInr": {
+          "type": "number"
+        },
+        "image": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 500
+        },
+        "quantity": {
+          "type": "number"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "userId",
+        "productId",
+        "sku",
+        "shortName",
+        "priceInr",
+        "image",
+        "quantity",
+        "updatedAt"
+      ]
+    },
+    "WishlistEntry": {
+      "title": "WishlistEntry",
+      "description": "Single saved product bookmark in a user's wishlist subcollection.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "productId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "shortName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "priceInr": {
+          "type": "number"
+        },
+        "image": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 500
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "userId",
+        "productId",
+        "shortName",
+        "priceInr",
+        "image",
+        "createdAt"
+      ]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer purchase order created via Checkout.",
+      "type": "object",
+      "properties": {
+        "orderNumber": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 40,
+          "pattern": "^[A-Z0-9\\-]+$"
+        },
+        "userId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "customerName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "customerEmail": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 160
+        },
+        "customerPhone": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 20
+        },
+        "address": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 300
+        },
+        "state": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80
+        },
+        "pinCode": {
+          "type": "string",
+          "minLength": 6,
+          "maxLength": 10,
+          "pattern": "^[0-9]{6}$"
+        },
+        "paymentMethod": {
+          "type": "string",
+          "enum": ["cod", "online_placeholder"]
+        },
+        "paymentStatus": {
+          "type": "string",
+          "enum": ["pending_cod", "awaiting_online_gateway", "paid"]
+        },
+        "orderStatus": {
+          "type": "string",
+          "enum": ["placed", "processing", "shipped", "delivered", "cancelled"]
+        },
+        "promoCode": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "subtotalInr": {
+          "type": "number"
+        },
+        "discountInr": {
+          "type": "number"
+        },
+        "shippingInr": {
+          "type": "number"
+        },
+        "totalInr": {
+          "type": "number"
+        },
+        "itemCount": {
+          "type": "number"
+        },
+        "itemsSummary": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 600
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "orderNumber",
+        "userId",
+        "customerName",
+        "customerEmail",
+        "customerPhone",
+        "address",
+        "state",
+        "pinCode",
+        "paymentMethod",
+        "paymentStatus",
+        "orderStatus",
+        "promoCode",
+        "subtotalInr",
+        "discountInr",
+        "shippingInr",
+        "totalInr",
+        "itemCount",
+        "itemsSummary",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "OrderItem": {
+      "title": "OrderItem",
+      "description": "Line item stored under /orders/{orderId}/items/{itemId}.",
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "userId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "productId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "sku": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 40
+        },
+        "name": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 160
+        },
+        "priceInr": {
+          "type": "number"
+        },
+        "quantity": {
+          "type": "number"
+        },
+        "image": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 500
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "orderId",
+        "userId",
+        "productId",
+        "sku",
+        "name",
+        "priceInr",
+        "quantity",
+        "image",
+        "createdAt"
+      ]
+    },
+    "NewsletterSubscriber": {
+      "title": "NewsletterSubscriber",
+      "description": "Newsletter subscription email and hardware interest track.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 160
+        },
+        "track": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 60
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["email", "track", "createdAt"]
+    },
+    "AdminRecord": {
+      "title": "AdminRecord",
+      "description": "Privileged admin membership marker controlled exclusively by bootstrapped admin.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 160
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["uid", "email", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "Publicly readable catalog of electronics products and engineering bundles. Managed by admins."
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Private customer account profiles containing PII, strictly restricted to the owning user or admin."
+    },
+    "/users/{userId}/cart/{productId}": {
+      "schema": { "$ref": "#/entities/CartEntry" },
+      "description": "Persisted shopping cart items owned by a verified user."
+    },
+    "/users/{userId}/wishlist/{productId}": {
+      "schema": { "$ref": "#/entities/WishlistEntry" },
+      "description": "Persisted wishlist items owned by a verified user."
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Customer orders placed through checkout, readable by the owning customer or admin."
+    },
+    "/orders/{orderId}/items/{itemId}": {
+      "schema": { "$ref": "#/entities/OrderItem" },
+      "description": "Normalized order line items linked to their parent order."
+    },
+    "/newsletter/{subscriberId}": {
+      "schema": { "$ref": "#/entities/NewsletterSubscriber" },
+      "description": "Engineering dispatch newsletter signups (write-only for public, readable only by admin)."
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/AdminRecord" },
+      "description": "Trusted admin allowlist managed exclusively by the bootstrapped admin."
+    }
+  }
+}
